@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="TscMasterMente.PageDbMente"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TscMasterMente"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <ItemsRepeater x:Name="itemRepeater" Background="Aqua">
+            <ItemsRepeater.Layout>
+                <UniformGridLayout MaximumRowsOrColumns="2"/>
+            </ItemsRepeater.Layout>
+            <ItemsRepeater.ItemTemplate>
+                <DataTemplate x:DataType="local:TscMenuImageAndDescription">
+                    <StackPanel Orientation="Horizontal" Margin="5" Tapped="PanelMenu_Tapped" Tag="{x:Bind Name}">
+                        <Image Source="{x:Bind ImagePath}" Width="50" Height="50" Margin="5"/>
+                        <StackPanel>
+                            <TextBlock Text="{x:Bind Title}" VerticalAlignment="Center" Margin="5" FontSize="25" TextWrapping="NoWrap"/>
+                            <TextBlock Text="{x:Bind Detail}" VerticalAlignment="Center" Margin="5" FontSize="18" TextWrapping="Wrap" Width="100"/>
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsRepeater.ItemTemplate>
+        </ItemsRepeater>
+    </Grid>
+</Page>

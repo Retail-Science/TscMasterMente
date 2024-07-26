@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="TscMasterMente.PageFileProc"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TscMasterMente"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Button Margin="20,30,0,0" Grid.Row="0" Grid.Column="0" >
+                    <Button.Flyout>
+                        <MenuFlyout Placement="BottomEdgeAlignedRight">
+                            <MenuFlyoutItem x:Name="MenuMasterExport" Text="出力" Icon="Download" Click="MenuMasterExport_Click"/>
+                            <MenuFlyoutItem x:Name="MenuMasterImport" Text="取込" Icon="Upload" Click="MenuMasterImport_Click"/>
+                        </MenuFlyout>
+                    </Button.Flyout>
+                    <ToolTipService.ToolTip>
+                        <ToolTip>
+                            <TextBlock Text="Mから始まるテキスト形式のマスタファイルのデータ管理を行います。" TextWrapping="Wrap" MaxWidth="200" />
+                        </ToolTip>
+                    </ToolTipService.ToolTip>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="Assets/TextMasterMenuImage_32x32.png" Width="50" Height="50" Margin="5" Grid.Column="0"/>
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Text="棚サイエンス用マスタ" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"
+                                       FontSize="16" TextWrapping="NoWrap" Width="200" />
+                            <TextBlock Text="棚サイエンスのマスタファイルを出力または取込を行います。" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                       Margin="5" FontSize="12" TextWrapping="Wrap" Width="200" Height="35" />
+                        </StackPanel>
+                    </Grid>
+                </Button>
+
+                <Button Margin="0,30,0,0" Grid.Row="0" Grid.Column="1">
+                    <Button.Flyout>
+                        <MenuFlyout Placement="BottomEdgeAlignedLeft">
+                            <MenuFlyoutItem x:Name="MenuExcelItemBlank" Text="新規" Icon="Document" Click="MenuExcelItemBlank_Click" />
+                            <MenuFlyoutItem x:Name="MenuExcelItemExp" Text="出力" Icon="Download" Click="MenuExcelItemExp_Click" />
+                            <MenuFlyoutItem x:Name="MenuExcelItemImp" Text="取込" Icon="Upload" Click="MenuExcelItemImp_Click" />
+                        </MenuFlyout>
+                    </Button.Flyout>
+                    <ToolTipService.ToolTip>
+                        <ToolTip>
+                            <TextBlock Text="商品マスタおよび商品属性マスタの管理をExcelファイルで行います。" TextWrapping="Wrap" MaxWidth="200" />
+                        </ToolTip>
+                    </ToolTipService.ToolTip>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="Assets/ExcelMasterMenuImage_32x32.png" Width="50" Height="50" Margin="5" Grid.Column="0"/>
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Text="Excel商品登録" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                       Margin="5" FontSize="16" TextWrapping="NoWrap" Width="200" />
+                            <TextBlock Text="Excelファイル形式の商品マスタファイルを処理します。" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                       Margin="5" FontSize="12" TextWrapping="Wrap" Width="200" Height="35"/>
+                        </StackPanel>
+                    </Grid>
+                </Button>
+
+                <Button x:Name="BtnPlanet" Margin="20,10,0,0" Grid.Row="1" Grid.Column="0" Click="BtnPlanet_Click" >
+                    <ToolTipService.ToolTip>
+                        <ToolTip>
+                            <TextBlock Text="マスタメンテナンスの管理データをプラネット形式に変換して出力します。" TextWrapping="Wrap" MaxWidth="200" />
+                        </ToolTip>
+                    </ToolTipService.ToolTip>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="Assets/PlanetConvertImage_32x32.png" Width="50" Height="50" Margin="5" Grid.Column="0"/>
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Text="Planet" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"
+                                       FontSize="16" TextWrapping="NoWrap" Width="200" />
+                            <TextBlock Text="プラネットデータフォーマットで商品情報、商品画像を出力します。" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                       Margin="5" FontSize="12" TextWrapping="Wrap" Width="200" Height="35" />
+                        </StackPanel>
+                    </Grid>
+                </Button>
+
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Page>
