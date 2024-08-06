@@ -26,6 +26,8 @@ namespace TscMasterMente
     /// </summary>
     public sealed partial class PageDbMente : Page
     {
+        #region コンストラクタ
+
         public PageDbMente()
         {
             this.InitializeComponent();
@@ -71,25 +73,15 @@ namespace TscMasterMente
             };
             itemRepeater.ItemsSource = items;
         }
+        #endregion
 
-        private void BtnMenu_Click(object sender, RoutedEventArgs e)
-        {
-            if (sender is Button button && button.DataContext is TscMenuImageAndDescription item)
-            {
-                var itemTitle = item.Title;
-                var itemDetail = item.Detail;
-                //var messageDialog = new ContentDialog
-                //{
-                //    Title = item.Title,
-                //    Content = item.Description,
-                //    CloseButtonText = "OK"
-                //};
+        #region メソッド
 
-                //messageDialog.XamlRoot = this.Content.XamlRoot;
-                //_ = messageDialog.ShowAsync();
-            }
-        }
-
+        /// <summary>
+        /// tapイベント
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PanelMenu_Tapped(object sender, TappedRoutedEventArgs e)
         {
             if (sender is FrameworkElement element && element.Tag != null)
@@ -139,5 +131,7 @@ namespace TscMasterMente
                 //_ = messageDialog.ShowAsync();
             }
         }
+
+        #endregion
     }
 }
