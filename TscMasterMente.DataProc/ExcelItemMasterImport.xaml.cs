@@ -159,7 +159,7 @@ namespace TscMasterMente.DataProc
                                 {
                                     wSql.ExecuteSql(wConn, "DELETE FROM SyoZokSei", null);
                                 }
-                                wSql.ExecuteSql(wConn, "DELETE FROM SyoZokSei", null);
+                                wSql.ExecuteSql(wConn, "DELETE FROM SyoMaster", null);
                             }
 
                             for (int iRow = BEGIN_EXCEL_ROW; iRow < wMaxRowCnt; iRow++)
