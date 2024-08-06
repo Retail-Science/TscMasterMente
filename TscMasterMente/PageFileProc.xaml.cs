@@ -42,6 +42,9 @@ namespace TscMasterMente
         /// <param name="e"></param>
         private void MenuMasterExport_Click(object sender, RoutedEventArgs e)
         {
+
+            if (MenteParts.FindWindowTitleActivatee("マスタファイル出力")) return;            
+
             MasterExport wMstExp = new MasterExport();
             ((App)Application.Current).ProWindowMng.AddWindow(wMstExp);
             wMstExp.Activate();
@@ -54,6 +57,8 @@ namespace TscMasterMente
         /// <param name="e"></param>
         private void MenuMasterImport_Click(object sender, RoutedEventArgs e)
         {
+            if (MenteParts.FindWindowTitleActivatee("マスタファイル取込")) return;
+
             MasterImport wMstImp = new MasterImport();
             ((App)Application.Current).ProWindowMng.AddWindow(wMstImp);
             wMstImp.Activate();
@@ -66,9 +71,12 @@ namespace TscMasterMente
         /// <param name="e"></param>
         private void MenuExcelItemExp_Click(object sender, RoutedEventArgs e)
         {
+            if (MenteParts.FindWindowTitleActivatee("Excel商品マスタ出力")) return;
+
             ExcelItemMasterExport wExp = new ExcelItemMasterExport();
             ((App)Application.Current).ProWindowMng.AddWindow(wExp);
             wExp.Activate();
+            
         }
 
         /// <summary>
@@ -78,6 +86,8 @@ namespace TscMasterMente
         /// <param name="e"></param>
         private void MenuExcelItemImp_Click(object sender, RoutedEventArgs e)
         {
+            if (MenteParts.FindWindowTitleActivatee("Excel商品マスタ取込")) return;
+
             ExcelItemMasterImport wImp = new ExcelItemMasterImport();
             ((App)Application.Current).ProWindowMng.AddWindow(wImp);
             wImp.Activate();
@@ -90,6 +100,8 @@ namespace TscMasterMente
         /// <param name="e"></param>
         private void MenuExcelItemBlank_Click(object sender, RoutedEventArgs e)
         {
+            if (MenteParts.FindWindowTitleActivatee("Excel商品マスタ出力-ブランク")) return;
+
             ExcelItemMasterBlank wBlank = new ExcelItemMasterBlank();
             ((App)Application.Current).ProWindowMng.AddWindow(wBlank);
             wBlank.Activate();
@@ -102,6 +114,8 @@ namespace TscMasterMente
         /// <param name="e"></param>
         private void BtnPlanet_Click(object sender, RoutedEventArgs e)
         {
+            if (MenteParts.FindWindowTitleActivatee("プラネットデータ出力")) return;
+
             PlanetConvert wPlanet = new PlanetConvert();
             ((App)Application.Current).ProWindowMng.AddWindow(wPlanet);
             wPlanet.Activate();

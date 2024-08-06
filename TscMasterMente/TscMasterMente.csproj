@@ -12,6 +12,12 @@
     <EnableMsixTooling>true</EnableMsixTooling>
     <AssemblyName></AssemblyName>
     <PlatformTarget>AnyCPU</PlatformTarget>
+
+    <!-- Exeから直接実行する為の設定 -->
+    <WindowsPackageType>None</WindowsPackageType>
+
+    <!-- バージョン情報 -->
+    <FileVersion>1.0.0.2</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

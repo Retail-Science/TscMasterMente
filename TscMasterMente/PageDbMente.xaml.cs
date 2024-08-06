@@ -39,7 +39,8 @@ namespace TscMasterMente
                     ImagePath = "Assets/DbBkMenuImage_32x32.png",
                     Name = "MenuBackup",
                     Title = "バックアップ",
-                    Detail="データベースのバックアップを行います。"
+                    Detail="データベースのバックアップを行います。",
+                    tooltipText = "マスタメンテで使用するDBのバックアップを行います。"
                 },
 
                 new TscMenuImageAndDescription
@@ -47,7 +48,8 @@ namespace TscMasterMente
                     ImagePath = "Assets/VacuumMenuImage_32x32.png",
                     Name ="MenuDbVacuum",
                     Title = "最適化",
-                    Detail="データベースを最適化します。"
+                    Detail="データベースを最適化します。",
+                    tooltipText = "マスタメンテで使用するDBの最適化を庫内ます。"
                 },
 
                 new TscMenuImageAndDescription
@@ -55,7 +57,8 @@ namespace TscMasterMente
                     ImagePath = "Assets/TscConfigMenuImage.png",
                     Name = "MenuTanaIni",
                     Title = "構成ファイル",
-                    Detail="棚サイエンスの構成ファイルの参照先を設定します。"
+                    Detail="棚サイエンスの構成ファイルの参照先を設定します。",
+                    tooltipText = "棚サイエンスのTANA.INIの参照先を設定します。"
                 },
 
                 new TscMenuImageAndDescription
@@ -97,17 +100,22 @@ namespace TscMasterMente
                 switch (item)
                 {
                     case "MenuBackup":
+                        if (MenteParts.FindWindowTitleActivatee("DBバックアップ")) return;
+
                         DbBackup wDbBk = new DbBackup();
                         ((App)Application.Current).ProWindowMng.AddWindow(wDbBk);
                         wDbBk.Activate();
                         break;
                     case "MenuDbVacuum":
-                        //clsSql.ExecuteSql("VACUUM;");
+                        if (MenteParts.FindWindowTitleActivatee("DB最適化")) return;
+                        
                         DbVacuum wDbVac = new DbVacuum();
                         ((App)Application.Current).ProWindowMng.AddWindow(wDbVac);
                         wDbVac.Activate();
                         break;
                     case "MenuTanaIni":
+                        if (MenteParts.FindWindowTitleActivatee("棚サイエンス-参照先構成ファイルの設定")) return;
+
                         TanaScienceSetting wTanaScience = new TanaScienceSetting();
                         ((App)Application.Current).ProWindowMng.AddWindow(wTanaScience);
                         wTanaScience.Activate();

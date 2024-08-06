@@ -11,18 +11,22 @@ namespace TscMasterMente
         /// <summary>
         /// 画像ファイルパス
         /// </summary>
-        public string ImagePath { get; set; }
+        public string ImagePath { get; set; } = null;
         /// <summary>
         /// キー名称
         /// </summary>
-        public string Name { get; set; }
+        public string Name { get; set; } = null;
         /// <summary>
         /// タイトル
         /// </summary>
-        public string Title { get; set; }
+        public string Title { get; set; } = null;
         /// <summary>
         /// 詳細
         /// </summary>
-        public string Detail { get; set; }
+        public string Detail { get; set; } = null;
+        /// <summary>
+        /// ツールチップテキスト
+        /// </summary>
+        public string tooltipText { get; set; } = null;
     }
 }

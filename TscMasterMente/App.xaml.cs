@@ -8,6 +8,7 @@ using Microsoft.UI.Xaml.Navigation;
 using Microsoft.UI.Xaml.Shapes;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -65,10 +66,22 @@ namespace TscMasterMente
             clsSql.CretateTables();
             var wDbVer = clsSql.GetAppInfo("DbVer");
 
-            var package = Package.Current;
-            var packageId = package.Id;
-            var version = packageId.Version;
-            string wAppVer = $"{version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
+            #region アプリケーションバージョン取得(Unpakeagedではエラーになるのでコメント化)
+            //var package = Package.Current;
+            //var packageId = package.Id;
+            //var version = packageId.Version;
+            //string wAppVer = $"{version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
+            #endregion
+
+            #region アプリケーションバージョン取得(Unpakeagedでの取得方法)
+            // 実行ファイルのパスを取得
+            string exePath = Process.GetCurrentProcess().MainModule.FileName;
+            // ファイルバージョン情報を取得
+            FileVersionInfo verInf = FileVersionInfo.GetVersionInfo(exePath);
+            // バージョン情報を表示
+            string wAppVer = verInf.FileVersion;
+            #endregion
+
 
             var m_window = new MainMenu(wAppVer, wDbVer);
             m_window.Activate();
