@@ -15,7 +15,7 @@
                         IsPaneOpen="false" PaneDisplayMode="LeftCompact" IsBackButtonVisible="Collapsed"                        
                         >
             <NavigationView.MenuItems>
-                <NavigationViewItem Icon="Attach" Content="機能" Tag="PageFileProc"/>
+                <NavigationViewItem Icon="Attach" Content="機能" Tag="PageFileProc" />
                 <NavigationViewItem Icon="Edit" Content="マスタメンテナンス" Tag="PageMasterMente" />
                 <NavigationViewItem Icon="OutlineStar" Content="DB" Tag="PageDbMente" />
             </NavigationView.MenuItems>

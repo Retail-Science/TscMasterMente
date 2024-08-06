@@ -73,6 +73,7 @@
   <ItemGroup>
     <ProjectReference Include="..\TscMasterMente.Common\TscMasterMente.Common.csproj" />
     <ProjectReference Include="..\TscMasterMente.DataProc\TscMasterMente.DataProc.csproj" />
+    <ProjectReference Include="..\TscMasterMente.DbMente\TscMasterMente.DbMente.csproj" />
   </ItemGroup>
 <ItemGroup>
   <None Update="..\TscMasterMente.DataProc\Assets\**\*">
@@ -87,6 +88,15 @@
   <Resource Remove="BlankWindow1.xaml" />
 </ItemGroup>
 <ItemGroup>
+  <Content Update="Assets\AppIcon.scale-100.png">
+    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+  </Content>
+  <Content Update="Assets\AppIcon.scale-200.png">
+    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+  </Content>
+  <Content Update="Assets\DbBkMenuImage_32x32.png">
+    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+  </Content>
   <Content Update="Assets\ExcelMasterMenuImage_32x32.png">
     <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
   </Content>
@@ -94,6 +104,12 @@
     <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
   </Content>
   <Content Update="Assets\TextMasterMenuImage_32x32.png">
+    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+  </Content>
+  <Content Update="Assets\TscConfigMenuImage.png">
+    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+  </Content>
+  <Content Update="Assets\VacuumMenuImage_32x32.png">
     <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
   </Content>
 </ItemGroup>

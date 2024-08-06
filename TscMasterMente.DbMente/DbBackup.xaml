@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="TscMasterMente.DbMente.DbBackup"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TscMasterMente.DbMente"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ProjCommon="using:TscMasterMente.Common"
+    mc:Ignorable="d">
+
+
+    <Grid x:Name="MainContent" Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+
+        <TextBlock x:Name="TxtExplain" Grid.Column="0" Text="ローカルデータベースのバックアップを行います。" 
+                       TextWrapping="Wrap" Margin="0,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Center" />
+        
+        <Border Grid.Row="1" BorderBrush="Green" BorderThickness="2" Margin="5" Padding="10">
+
+            <StackPanel Orientation="Horizontal">
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="オリジナルDB:" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" />
+                    <TextBox x:Name="TxtOrgDbPath" Text="C:\TSC\PLANOGRAM_MASTER\PACK\" Grid.Row="1" Grid.Column="0"
+                             Width="400" VerticalAlignment="Center" TextWrapping="Wrap" IsReadOnly="True" Background="Salmon" />
+                    <Button x:Name="BtnOrgDbPath" Click="BtnOrgDbPath_Click" Margin="10,0,0,0"  Grid.Row="1" Grid.Column="1">
+                        <Image Source="/Assets/Folder_32x32.png" />
+                    </Button>
+                </Grid>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="2" BorderBrush="Red" BorderThickness="2" Margin="5" Padding="10">
+
+            <StackPanel Orientation="Horizontal">
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="バックアップDB:" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" />
+                    <TextBox x:Name="TxtBkupDbPath" Text="" Grid.Row="1" Grid.Column="0"
+                             Width="400" VerticalAlignment="Center" TextWrapping="Wrap" IsReadOnly="True" Background="Salmon" />
+                    <Button x:Name="BtnBkupDbPath" Click="BtnBkupDbPath_Click" Margin="10,0,0,0"  Grid.Row="1" Grid.Column="1">
+                        <Image Source="/Assets/Folder_32x32.png" />
+                    </Button>
+                </Grid>
+            </StackPanel>
+        </Border>
+        
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <Button x:Name="BtnExec" Click="BtnExec_Click" Content="実行" Margin="10,0,0,0"/>
+            <Button x:Name="BtnClose" Click="BtnClose_Click" Content="閉じる" Margin="10,0,0,0"/>
+        </StackPanel>
+    </Grid>
+</Window>

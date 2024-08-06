@@ -16,11 +16,13 @@
             </ItemsRepeater.Layout>
             <ItemsRepeater.ItemTemplate>
                 <DataTemplate x:DataType="local:TscMenuImageAndDescription">
-                    <StackPanel Orientation="Horizontal" Margin="5" Tapped="PanelMenu_Tapped" Tag="{x:Bind Name}">
+                    <StackPanel Orientation="Horizontal" Tapped="PanelMenu_Tapped" Tag="{x:Bind Name}" Width="300" Margin="20,20,0,0" Background="White">
                         <Image Source="{x:Bind ImagePath}" Width="50" Height="50" Margin="5"/>
                         <StackPanel>
-                            <TextBlock Text="{x:Bind Title}" VerticalAlignment="Center" Margin="5" FontSize="25" TextWrapping="NoWrap"/>
-                            <TextBlock Text="{x:Bind Detail}" VerticalAlignment="Center" Margin="5" FontSize="18" TextWrapping="Wrap" Width="100"/>
+                            <TextBlock Text="{x:Bind Title}" VerticalAlignment="Center" Margin="5" FontSize="16"
+                                       TextWrapping="NoWrap" Width="230" FontWeight="Bold" />
+                            <TextBlock Text="{x:Bind Detail}" VerticalAlignment="Center" Margin="5" FontSize="12"
+                                       TextWrapping="Wrap" Width="230" Height="35" />
                         </StackPanel>
                     </StackPanel>
                 </DataTemplate>

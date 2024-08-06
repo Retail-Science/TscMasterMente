@@ -9,6 +9,7 @@ using Windows.Graphics;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media.Imaging;
 
 namespace TscMasterMente.Common
 {
@@ -137,7 +138,10 @@ namespace TscMasterMente.Common
             }
         }
 
-        // ウィンドウのサイズを固定するメソッド
+        /// <summary>
+        /// ウィンドウのサイズを固定するメソッド
+        /// </summary>
+        /// <param name="argWindow">ウィンドウ</param>
         public static void SetWindowSizeFixed(Window argWindow)
         {
             var appWindow = GetAppWindow(argWindow);
@@ -148,10 +152,26 @@ namespace TscMasterMente.Common
                 var presenter = appWindow.Presenter as Microsoft.UI.Windowing.OverlappedPresenter;
                 presenter.IsResizable = false;
                 presenter.IsMaximizable = false;
-                presenter.IsMinimizable = false;                
+                presenter.IsMinimizable = false;
             }
         }
 
+        /// <summary>
+        /// ウィンドウのタイトルバーアイコンを設定
+        /// </summary>
+        /// <param name="argWindow">ウィンドウ</param>
+        public static void SetAppIcon(Window argWindow)
+        {
+            // AppWindowオブジェクトを取得
+            var appWindow = GetAppWindow(argWindow);
+            if (appWindow != null)
+            {
+                string exePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+                var exeDirPath = System.IO.Path.GetDirectoryName(exePath);
+                var xPath = System.IO.Path.Combine(exeDirPath, "Assets", "AppIcon.ico");
+                appWindow.SetIcon(xPath);
+            }
+        }
         #endregion
     }
 }

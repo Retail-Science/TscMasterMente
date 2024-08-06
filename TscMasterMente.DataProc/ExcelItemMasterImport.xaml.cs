@@ -52,6 +52,8 @@ namespace TscMasterMente.DataProc
         /// </remarks>
         private async void ExcelItemMasterImport_Activated(object sender, WindowActivatedEventArgs e)
         {
+            //アプリアイコンを設定
+            WindowParts.SetAppIcon(this);
             //ウィンドウサイズを設定
             WindowParts.SetWindowSize(this, 600, 600);
             //ウィンドウを中央に表示
@@ -100,6 +102,7 @@ namespace TscMasterMente.DataProc
 
         private async void BtnExec_Click(object sender, RoutedEventArgs e)
         {
+            var wSucceed = false;
             var wProgressWindow = new ProgressWindow();
             try
             {
@@ -195,11 +198,14 @@ namespace TscMasterMente.DataProc
 
                 }
                 #endregion
+
+                wSucceed = true;
             }
             catch (Exception ex)
             {
                 var tMsgDialog = MessageParts.ShowMessageOkOnly(this, "エラー", ex.Message);
                 await tMsgDialog.ShowAsync();
+                wSucceed = false;
             }
             finally
             {
@@ -209,6 +215,12 @@ namespace TscMasterMente.DataProc
 
                 //ウィンドウの有効化
                 WindowParts.SetAllChildEnabled(MainContent, true);
+
+                if (wSucceed)
+                {
+                    var wDialog = MessageParts.ShowMessageOkOnly(this, "完了", "Excelの取込処理が完了しました。");
+                    await wDialog.ShowAsync();
+                }
             }
         }
 

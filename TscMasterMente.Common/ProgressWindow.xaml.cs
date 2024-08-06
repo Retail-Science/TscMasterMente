@@ -21,7 +21,7 @@ using Windows.Foundation.Collections;
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
 namespace TscMasterMente.Common
-{   
+{
 
     /// <summary>
     /// An empty window that can be used on its own or navigated to within a Frame.
@@ -31,10 +31,10 @@ namespace TscMasterMente.Common
         private bool IsCancelled { get; set; } = false;
 
         #region コンストラクタ
-        
+
         public ProgressWindow()
         {
-            this.InitializeComponent();           
+            this.InitializeComponent();
             this.Activated += ProgressWindow_Activated;
         }
         #endregion
@@ -62,7 +62,7 @@ namespace TscMasterMente.Common
 
             var op = OverlappedPresenter.Create();
             op.IsResizable = false;
-            op.IsAlwaysOnTop = false;            
+            op.IsAlwaysOnTop = false;
             op.SetBorderAndTitleBar(false, false);
             m_AppWindow.SetPresenter(op);
 
@@ -95,14 +95,14 @@ namespace TscMasterMente.Common
         {
             //ProgressBarの初期化
             PbStatus.Minimum = 0;
-            if(argMaxCnt <= 0)
+            if (argMaxCnt <= 0)
             {
                 PbStatus.Maximum = 100;
             }
             else
             {
                 PbStatus.Maximum = argMaxCnt;
-            }            
+            }
             PbStatus.Value = 0;
 
             //テキストの初期化
@@ -139,7 +139,7 @@ namespace TscMasterMente.Common
             }
             else
             {
-                TxtDetail.Text = argDtlMsg;                
+                TxtDetail.Text = argDtlMsg;
                 PbStatus.Value += 1;
                 TxtProcessNumCnt.Text = PbStatus.Value.ToString() + " / " + PbStatus.Maximum.ToString();
 

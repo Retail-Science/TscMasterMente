@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Configuration>
   <AppSettings>
-    <DbVer>1.2.3.4</DbVer>
-    <MasterTextDirectryName>MasterTextFiles</MasterTextDirectryName>
-    <MasterExcelDirectryName>MasterExcelFiles</MasterExcelDirectryName>
+    <DbVer>1.0.0.0</DbVer>
+    <MasterTextDirectoryName>MasterTextFiles</MasterTextDirectoryName>
+    <MasterExcelDirectoryName>MasterExcelFiles</MasterExcelDirectoryName>
     <SqliteDbFileName>TscMaster.db</SqliteDbFileName>
+    <PlanetWriteDirectoryName>PlanetFiles</PlanetWriteDirectoryName>
   </AppSettings>
 </Configuration>

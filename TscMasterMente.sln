@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TscMasterMente", "TscMaster
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TscMasterMente.Common", "TscMasterMente.Common\TscMasterMente.Common.csproj", "{191EDA02-E3E9-422C-9756-CF28323204AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TscMasterMente.DataProc", "TscMasterMente.DataProc\TscMasterMente.DataProc.csproj", "{31A23796-7398-4148-A909-9DC175CA4C34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TscMasterMente.DataProc", "TscMasterMente.DataProc\TscMasterMente.DataProc.csproj", "{31A23796-7398-4148-A909-9DC175CA4C34}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TscMasterMente.DbMente", "TscMasterMente.DbMente\TscMasterMente.DbMente.csproj", "{EAD6970F-698F-4AD3-AE6D-53328CDAD99E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,6 +79,22 @@ Global
 		{31A23796-7398-4148-A909-9DC175CA4C34}.Release|x64.Build.0 = Release|Any CPU
 		{31A23796-7398-4148-A909-9DC175CA4C34}.Release|x86.ActiveCfg = Release|Any CPU
 		{31A23796-7398-4148-A909-9DC175CA4C34}.Release|x86.Build.0 = Release|Any CPU
+		{EAD6970F-698F-4AD3-AE6D-53328CDAD99E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAD6970F-698F-4AD3-AE6D-53328CDAD99E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAD6970F-698F-4AD3-AE6D-53328CDAD99E}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{EAD6970F-698F-4AD3-AE6D-53328CDAD99E}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{EAD6970F-698F-4AD3-AE6D-53328CDAD99E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{EAD6970F-698F-4AD3-AE6D-53328CDAD99E}.Debug|x64.Build.0 = Debug|Any CPU
+		{EAD6970F-698F-4AD3-AE6D-53328CDAD99E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EAD6970F-698F-4AD3-AE6D-53328CDAD99E}.Debug|x86.Build.0 = Debug|Any CPU
+		{EAD6970F-698F-4AD3-AE6D-53328CDAD99E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAD6970F-698F-4AD3-AE6D-53328CDAD99E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAD6970F-698F-4AD3-AE6D-53328CDAD99E}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{EAD6970F-698F-4AD3-AE6D-53328CDAD99E}.Release|ARM64.Build.0 = Release|Any CPU
+		{EAD6970F-698F-4AD3-AE6D-53328CDAD99E}.Release|x64.ActiveCfg = Release|Any CPU
+		{EAD6970F-698F-4AD3-AE6D-53328CDAD99E}.Release|x64.Build.0 = Release|Any CPU
+		{EAD6970F-698F-4AD3-AE6D-53328CDAD99E}.Release|x86.ActiveCfg = Release|Any CPU
+		{EAD6970F-698F-4AD3-AE6D-53328CDAD99E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

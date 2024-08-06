@@ -7,13 +7,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     xmlns:projA="using:TscMasterMente.Common.SqlMaps"
+    xmlns:ProjCommon="using:TscMasterMente.Common"
     Title="Excel商品マスタ出力">
-
+   
     <Grid x:Name="MainContent" Margin="30">
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="510"/>
+            <RowDefinition Height="380"/>
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
 
@@ -33,7 +34,7 @@
 
                     <TextBlock Text="マスタが作成される場所:" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" />
                     <TextBox x:Name="TxtMasterPath" Text="C:\TSC\PLANOGRAM_MASTER\PACK\" Grid.Row="1" Grid.Column="0" 
-                             Width="400" VerticalAlignment="Center" TextWrapping="NoWrap" IsReadOnly="True" Background="Salmon" />
+                             Width="800" VerticalAlignment="Center" TextWrapping="NoWrap" IsReadOnly="True" Background="Salmon" />
                     <Button x:Name="BtnFolder" Margin="10,0,0,0" Click="BtnFolder_Click" Grid.Row="1" Grid.Column="1">
                         <Image Source="/Assets/Folder_32x32.png" />
                     </Button>
@@ -49,16 +50,18 @@
         <Border Grid.Row="2" BorderBrush="Black" BorderThickness="2" Padding="10,5,0,0">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="180"/>
                     <ColumnDefinition Width="50"/>
-                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="180"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
-                    <RowDefinition Height="200"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="200"/>
+                    <RowDefinition Height="290"/>
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Column="0" Grid.Row="0" Text="出力項目設定" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" />
@@ -67,12 +70,28 @@
                           SelectionMode="Multiple" BorderBrush="Gray" BorderThickness="3">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="projA:MkMaster">
-                            <StackPanel>
-                                <TextBlock Text="{x:Bind MkCode}" FontSize="12"/>
-                                <TextBlock Text="{x:Bind MkName}" FontSize="12"/>
+                            <StackPanel Orientation="Horizontal" Margin="0" VerticalAlignment="Center">
+                                <TextBlock Text="{x:Bind MkCode}" FontSize="12" Foreground="Blue" />
+                                <TextBlock Text="{x:Bind MkName}" FontSize="12" Margin="10,0,0,0"  />
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
+                    <!--<ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="MinHeight" Value="20"/>
+                            <Setter Property="Background" Value="red"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ListViewItem">
+                                        <StackPanel Orientation="Horizontal">
+                                            <CheckBox VerticalAlignment="Center" Background="LightBlue" MinWidth="20" />
+                                            <ContentPresenter VerticalAlignment="Center" Margin="5,0,0,0"/>
+                                        </StackPanel>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListView.ItemContainerStyle>-->
                 </ListView>
 
                 <StackPanel Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -86,41 +105,41 @@
                           SelectionMode="Multiple" BorderBrush="Gray" BorderThickness="3">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="projA:MkMaster">
-                            <StackPanel>
-                                <TextBlock Text="{x:Bind MkCode}" FontSize="12"/>
-                                <TextBlock Text="{x:Bind MkName}" FontSize="12"/>
+                            <StackPanel Orientation="Horizontal" Margin="0" VerticalAlignment="Center">
+                                <TextBlock Text="{x:Bind MkCode}" FontSize="12" Foreground="Blue" />
+                                <TextBlock Text="{x:Bind MkName}" FontSize="12" Margin="10,0,0,0" />
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
 
-                <TextBlock Grid.Column="0" Grid.Row="3" Text="細分類:" VerticalAlignment="Center"/>
-                <ListView x:Name="LvBunDefined" ItemsSource="{x:Bind BunDef}" Grid.Column="0" Grid.Row="4" 
+                <TextBlock Grid.Column="4" Grid.Row="1" Text="細分類:" VerticalAlignment="Center"/>
+                <ListView x:Name="LvBunDefined" ItemsSource="{x:Bind BunDef}" Grid.Column="4" Grid.Row="2" 
                           SelectionMode="Multiple" BorderBrush="Gray" BorderThickness="3">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="projA:BunMaster">
-                            <StackPanel>
-                                <TextBlock Text="{x:Bind BunCode}" FontSize="12"/>
-                                <TextBlock Text="{x:Bind BunName}" FontSize="12"/>
+                            <StackPanel Orientation="Horizontal" Margin="0" VerticalAlignment="Center">
+                                <TextBlock Text="{x:Bind BunCode}" FontSize="12" Foreground="Blue" />
+                                <TextBlock Text="{x:Bind BunName}" FontSize="12" Margin="10,0,0,0" />
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
 
-                <StackPanel Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <StackPanel Grid.Column="5" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Button x:Name="BtnBunSet" Click="BtnBunSet_Click" Width="40" Content=">" />
                     <Button x:Name="BtnBunUnset" Click="BtnBunUnset_Click" Width="40" Content="&lt;" />
                     <Button x:Name="BtnBunAllSet" Click="BtnBunAllSet_Click" Width="40" Content=">>" />
                     <Button x:Name="BtnBunAllUnset" Click="BtnBunAllUnset_Click" Width="40" Content="&lt;&lt;" />
                 </StackPanel>
 
-                <ListView x:Name="LvBunSelected" ItemsSource="{x:Bind BunSel}" Grid.Column="2" Grid.Row="4" 
+                <ListView x:Name="LvBunSelected" ItemsSource="{x:Bind BunSel}" Grid.Column="6" Grid.Row="2" 
                           SelectionMode="Multiple" BorderBrush="Gray" BorderThickness="3">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="projA:BunMaster">
-                            <StackPanel>
-                                <TextBlock Text="{x:Bind BunCode}" FontSize="12"/>
-                                <TextBlock Text="{x:Bind BunName}" FontSize="12"/>
+                            <StackPanel Orientation="Horizontal" Margin="0" VerticalAlignment="Center">
+                                <TextBlock Text="{x:Bind BunCode}" FontSize="12" Foreground="Blue" />
+                                <TextBlock Text="{x:Bind BunName}" FontSize="12" Margin="10,0,0,0"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>

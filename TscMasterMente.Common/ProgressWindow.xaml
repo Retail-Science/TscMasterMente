@@ -8,23 +8,24 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Margin="30" >
+    <Grid Margin="30" Background="Black" >
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-       
+
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="20">
-            <TextBlock x:Name="TxtProcess" Text="処理内容" FontWeight="Bold" />
-            <TextBlock x:Name="TxtProcessNumCnt" Text="0/0" FontWeight="Bold" />
+            <TextBlock x:Name="TxtProcess" Text="処理内容" FontWeight="Bold" Foreground="White" />
+            <TextBlock x:Name="TxtProcessNumCnt" Text="0/0" FontWeight="Bold" Foreground="White" />
         </StackPanel>
 
-        <TextBlock Grid.Row="1" x:Name="TxtDetail" Text="詳細" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <ProgressBar Grid.Row="2" x:Name="PbStatus" Width="300" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <Button Grid.Row="3" x:Name="BtnCancel" Content="キャンセル" Click="BtnCancel_Click" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <TextBlock Grid.Row="1" x:Name="TxtDetail" Text="詳細" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" />
+        <ProgressBar Grid.Row="2" x:Name="PbStatus" Width="300" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red"  />
+        <Button Grid.Row="3" x:Name="BtnCancel" Content="キャンセル" Click="BtnCancel_Click" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                Background="Blue" Foreground="White"  />
     </Grid>
-   
+
 
 </Window>

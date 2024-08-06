@@ -21,7 +21,7 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <Button Margin="20,30,0,0" Grid.Row="0" Grid.Column="0" >
+                <Button Margin="20,20,0,0" Grid.Row="0" Grid.Column="0" >
                     <Button.Flyout>
                         <MenuFlyout Placement="BottomEdgeAlignedRight">
                             <MenuFlyoutItem x:Name="MenuMasterExport" Text="出力" Icon="Download" Click="MenuMasterExport_Click"/>
@@ -41,14 +41,14 @@
                         <Image Source="Assets/TextMasterMenuImage_32x32.png" Width="50" Height="50" Margin="5" Grid.Column="0"/>
                         <StackPanel Grid.Column="1">
                             <TextBlock Text="棚サイエンス用マスタ" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"
-                                       FontSize="16" TextWrapping="NoWrap" Width="200" />
+                                       FontSize="16" TextWrapping="NoWrap" Width="200" FontWeight="Bold" />
                             <TextBlock Text="棚サイエンスのマスタファイルを出力または取込を行います。" HorizontalAlignment="Left" VerticalAlignment="Center"
                                        Margin="5" FontSize="12" TextWrapping="Wrap" Width="200" Height="35" />
                         </StackPanel>
                     </Grid>
                 </Button>
 
-                <Button Margin="0,30,0,0" Grid.Row="0" Grid.Column="1">
+                <Button Margin="0,20,0,0" Grid.Row="0" Grid.Column="1">
                     <Button.Flyout>
                         <MenuFlyout Placement="BottomEdgeAlignedLeft">
                             <MenuFlyoutItem x:Name="MenuExcelItemBlank" Text="新規" Icon="Document" Click="MenuExcelItemBlank_Click" />
@@ -69,14 +69,14 @@
                         <Image Source="Assets/ExcelMasterMenuImage_32x32.png" Width="50" Height="50" Margin="5" Grid.Column="0"/>
                         <StackPanel Grid.Column="1">
                             <TextBlock Text="Excel商品登録" HorizontalAlignment="Left" VerticalAlignment="Center"
-                                       Margin="5" FontSize="16" TextWrapping="NoWrap" Width="200" />
+                                       Margin="5" FontSize="16" TextWrapping="NoWrap" Width="200" FontWeight="Bold" />
                             <TextBlock Text="Excelファイル形式の商品マスタファイルを処理します。" HorizontalAlignment="Left" VerticalAlignment="Center"
                                        Margin="5" FontSize="12" TextWrapping="Wrap" Width="200" Height="35"/>
                         </StackPanel>
                     </Grid>
                 </Button>
 
-                <Button x:Name="BtnPlanet" Margin="20,10,0,0" Grid.Row="1" Grid.Column="0" Click="BtnPlanet_Click" >
+                <Button x:Name="BtnPlanet" Margin="20,20,0,0" Grid.Row="1" Grid.Column="0" Click="BtnPlanet_Click" >
                     <ToolTipService.ToolTip>
                         <ToolTip>
                             <TextBlock Text="マスタメンテナンスの管理データをプラネット形式に変換して出力します。" TextWrapping="Wrap" MaxWidth="200" />
@@ -89,8 +89,8 @@
                         </Grid.ColumnDefinitions>
                         <Image Source="Assets/PlanetConvertImage_32x32.png" Width="50" Height="50" Margin="5" Grid.Column="0"/>
                         <StackPanel Grid.Column="1">
-                            <TextBlock Text="Planet" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"
-                                       FontSize="16" TextWrapping="NoWrap" Width="200" />
+                            <TextBlock Text="プラネット" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"
+                                       FontSize="16" TextWrapping="NoWrap" Width="200" FontWeight="Bold" />
                             <TextBlock Text="プラネットデータフォーマットで商品情報、商品画像を出力します。" HorizontalAlignment="Left" VerticalAlignment="Center"
                                        Margin="5" FontSize="12" TextWrapping="Wrap" Width="200" Height="35" />
                         </StackPanel>

@@ -94,8 +94,10 @@ namespace TscMasterMente.DataProc
             var clsSql = new SqliteParts();
             TxtMasterPath.Text = clsSql.GetAppInfo("MasterExcelDir");
 
+            //アプリアイコンを設定
+            WindowParts.SetAppIcon(this);
             //ウィンドウサイズを設定
-            WindowParts.SetWindowSize(this, 600, 850);
+            WindowParts.SetWindowSize(this, 990, 700);
             //ウィンドウを中央に表示
             WindowParts.SetCenterPosition(this);
             //ウィンドウサイズ固定
@@ -274,6 +276,7 @@ namespace TscMasterMente.DataProc
         /// <param name="e"></param>
         private async void BtnExec_Click(object sender, RoutedEventArgs e)
         {
+            var wSucceed = false;
             var wProgressWindow = new ProgressWindow();
             try
             {
@@ -382,6 +385,7 @@ namespace TscMasterMente.DataProc
                         {
                             var wDialog = MessageParts.ShowMessageOkOnly(this, "処理中断", "処理中にキャンセルを実行しました。");
                             await wDialog.ShowAsync();
+                            if (File.Exists(wFilePath)) File.Delete(wFilePath);
                             return;
                         }
 
@@ -446,6 +450,7 @@ namespace TscMasterMente.DataProc
                 {
                     var wDialog = MessageParts.ShowMessageOkOnly(this, "処理中断", "処理中にキャンセルを実行しました。");
                     await wDialog.ShowAsync();
+                    if (File.Exists(wFilePath)) File.Delete(wFilePath);
                     return;
                 }
                 var wInf = new ProcessStartInfo
@@ -457,11 +462,14 @@ namespace TscMasterMente.DataProc
                 Process.Start(wInf);
 
                 #endregion
+
+                wSucceed = true;
             }
             catch (Exception ex)
             {
                 var tMsgDialog = MessageParts.ShowMessageOkOnly(this, "エラー", ex.Message);
                 await tMsgDialog.ShowAsync();
+                wSucceed = false;
             }
             finally
             {
@@ -471,6 +479,12 @@ namespace TscMasterMente.DataProc
 
                 //ウィンドウの有効化
                 WindowParts.SetAllChildEnabled(MainContent, true);
+
+                if (wSucceed)
+                {
+                    var wDialog = MessageParts.ShowMessageOkOnly(this, "完了", "Excelの出力処理が完了しました。");
+                    await wDialog.ShowAsync();
+                }
             }
         }
 
@@ -502,6 +516,28 @@ namespace TscMasterMente.DataProc
                     MakerSel.Remove(iMaker);
                 }
             }
+
+            //定義用データの並べ替え
+            if (MakerSel.Count > 0)
+            {
+                var wMakerSel = MakerSel.OrderBy(x => x.MkCode).ToList();
+                MakerSel.Clear();
+                foreach (var iMaker in wMakerSel)
+                {
+                    MakerSel.Add(iMaker);
+                }
+            }
+
+            //選択用データの並べ替え
+            if(MakerDef.Count > 0)
+            {
+                var wMakerDef = MakerDef.OrderBy(x => x.MkCode).ToList();
+                MakerDef.Clear();
+                foreach (var iMaker in wMakerDef)
+                {
+                    MakerDef.Add(iMaker);
+                }
+            }
         }
 
         /// <summary>
@@ -523,6 +559,28 @@ namespace TscMasterMente.DataProc
                 {
                     BunDef.Add(iBun);
                     BunSel.Remove(iBun);
+                }
+            }
+
+            //定期用データの並べ替え
+            if (BunSel.Count > 0)
+            {
+                var wBunSel = BunSel.OrderBy(x => x.BunCode).ToList();
+                BunSel.Clear();
+                foreach (var iBun in wBunSel)
+                {
+                    BunSel.Add(iBun);
+                }
+            }
+
+            //選択用データの並べ替え
+            if (BunDef.Count > 0)
+            {
+                var wBunDef = BunDef.OrderBy(x => x.BunCode).ToList();
+                BunDef.Clear();
+                foreach (var iBun in wBunDef)
+                {
+                    BunDef.Add(iBun);
                 }
             }
         }
@@ -548,9 +606,9 @@ namespace TscMasterMente.DataProc
             #region メーカー絞込
 
             string wMkCond = "";
-            if (LvMkSelected.SelectedItems.Count > 0)
+            if (LvMkSelected.Items.Count > 0)
             {
-                foreach(MkMaster iMaker in LvMkSelected.SelectedItems)
+                foreach(MkMaster iMaker in LvMkSelected.Items)
                 {
                     if (!string.IsNullOrEmpty(wMkCond)) wMkCond += " , ";
                     wMkCond += $" '{iMaker.MkCode}'";
@@ -566,9 +624,9 @@ namespace TscMasterMente.DataProc
             #region 分類絞込
 
             string wBunCond = "";
-            if (LvBunSelected.SelectedItems.Count > 0)
+            if (LvBunSelected.Items.Count > 0)
             {
-                foreach (BunMaster iBun in LvBunSelected.SelectedItems)
+                foreach (BunMaster iBun in LvBunSelected.Items)
                 {
                     if (!string.IsNullOrEmpty(wBunCond)) wBunCond += " , ";
                     wBunCond += $" '{iBun.BunCode}'";

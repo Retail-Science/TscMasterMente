@@ -44,6 +44,14 @@ namespace TscMasterMente.Common
             /// 画像ファイル
             /// </summary>
             ImageFiles = 4,
+            /// <summary>
+            /// Sqliteファイル
+            /// </summary>
+            SqliteFiles = 5,
+            /// <summary>
+            /// Iniファイル
+            /// </summary>
+            IniFiles = 6,
         }
 
         #endregion
@@ -98,20 +106,23 @@ namespace TscMasterMente.Common
             {
                 case EnumFileType.TextFiles:
                     picker.FileTypeFilter.Add(".txt");
-                    picker.FileTypeFilter.Add("*");
                     break;
                 case EnumFileType.XlsxFiles:
                     picker.FileTypeFilter.Add(".xlsx");
-                    picker.FileTypeFilter.Add("*");
                     break;
                 case EnumFileType.CsvFiles:
                     picker.FileTypeFilter.Add(".csv");
-                    picker.FileTypeFilter.Add("*");
                     break;
                 case EnumFileType.ImageFiles:
                     picker.FileTypeFilter.Add(".png");
                     picker.FileTypeFilter.Add(".jpg");
                     picker.FileTypeFilter.Add("*");
+                    break;
+                case EnumFileType.SqliteFiles:
+                    picker.FileTypeFilter.Add(".db");
+                    break;
+                case EnumFileType.IniFiles:
+                    picker.FileTypeFilter.Add(".ini");
                     break;
                 default:
                     picker.FileTypeFilter.Add("*");
@@ -136,7 +147,7 @@ namespace TscMasterMente.Common
         /// <param name="argStartLoc">開始フォルダ</param>
         /// <param name="argFileName">ファイル名</param>
         /// <returns></returns>
-        public static async Task<string> SaveFileAsync(Window argWindow, EnumFileType argFileType,  string argFileName = "NewFile")
+        public static async Task<string> SaveFileAsync(Window argWindow, EnumFileType argFileType, string argFileName = "NewFile")
         {
             var picker = new FileSavePicker();
 
@@ -154,6 +165,12 @@ namespace TscMasterMente.Common
                     break;
                 case EnumFileType.ImageFiles:
                     picker.FileTypeChoices.Add("画像ファイル", new List<string>() { ".png", ".jpg" });
+                    break;
+                case EnumFileType.SqliteFiles:
+                    picker.FileTypeChoices.Add("Sqliteファイル", new List<string>() { ".db" });
+                    break;
+                case EnumFileType.IniFiles:
+                    picker.FileTypeChoices.Add("Iniファイル", new List<string>() { ".ini" });
                     break;
                 default:
                     break;

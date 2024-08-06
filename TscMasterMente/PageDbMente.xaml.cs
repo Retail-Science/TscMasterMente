@@ -13,6 +13,8 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using Microsoft.Data.Sqlite;
+using TscMasterMente.Common;
+using TscMasterMente.DbMente;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -34,33 +36,34 @@ namespace TscMasterMente
             {
                 new TscMenuImageAndDescription
                 {
-                    ImagePath = "Assets/Square150x150Logo.scale-200.png",
+                    ImagePath = "Assets/DbBkMenuImage_32x32.png",
                     Name = "MenuBackup",
                     Title = "バックアップ",
                     Detail="データベースのバックアップを行います。"
                 },
 
                 new TscMenuImageAndDescription
-                { 
-                    ImagePath = "Assets/Square150x150Logo.scale-200.png",
-                    Name ="MenuVacuum",
-                    Title = "初期化", Detail="データベースを初期化します。"
+                {
+                    ImagePath = "Assets/VacuumMenuImage_32x32.png",
+                    Name ="MenuDbVacuum",
+                    Title = "最適化",
+                    Detail="データベースを最適化します。"
                 },
 
                 new TscMenuImageAndDescription
-                { 
-                    ImagePath = "Assets/Square150x150Logo.scale-200.png",
-                    Name = "MenuX",
-                    Title = "xxx",
-                    Detail="aaa。"
+                {
+                    ImagePath = "Assets/TscConfigMenuImage.png",
+                    Name = "MenuTanaIni",
+                    Title = "構成ファイル",
+                    Detail="棚サイエンスの構成ファイルの参照先を設定します。"
                 },
 
                 new TscMenuImageAndDescription
-                { 
+                {
                     ImagePath = "Assets/Square150x150Logo.scale-200.png",
-                    Name = "MenuY",
-                    Title = "yyy",
-                    Detail="デ。"
+                    Name = "MenuDummy",
+                    Title = "テスト",
+                    Detail="ワーク用"
                 },
             };
             itemRepeater.ItemsSource = items;
@@ -88,22 +91,30 @@ namespace TscMasterMente
         {
             if (sender is FrameworkElement element && element.Tag != null)
             {
-                var clsSql=new TscMasterMente.Common.SqliteParts();
+                var clsSql = new TscMasterMente.Common.SqliteParts();
                 var item = element.Tag.ToString();
 
                 switch (item)
                 {
                     case "MenuBackup":
-                        //clsSql.BackupDb();
+                        DbBackup wDbBk = new DbBackup();
+                        ((App)Application.Current).ProWindowMng.AddWindow(wDbBk);
+                        wDbBk.Activate();
                         break;
-                    case "MenuVacuum":
-                        clsSql.ExecuteSql("VACUUM;");
+                    case "MenuDbVacuum":
+                        //clsSql.ExecuteSql("VACUUM;");
+                        DbVacuum wDbVac = new DbVacuum();
+                        ((App)Application.Current).ProWindowMng.AddWindow(wDbVac);
+                        wDbVac.Activate();
                         break;
-                    case "MenuX":
-                        BlankWindow1 w = new BlankWindow1();
-                        w.Activate();
+                    case "MenuTanaIni":
+                        TanaScienceSetting wTanaScience = new TanaScienceSetting();
+                        ((App)Application.Current).ProWindowMng.AddWindow(wTanaScience);
+                        wTanaScience.Activate();
                         break;
-                    case "MenuY":
+                    case "MenuDummy":
+                        BlankWindow1 wDmy = new BlankWindow1();
+                        wDmy.Activate();
                         break;
                     default:
                         break;

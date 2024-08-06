@@ -19,7 +19,7 @@ namespace TscMasterMente.Common
     /// </summary>
     public class SqliteParts
     {
-        #region MyRegion
+        #region 列挙型
 
 
         public enum EnumMasterInfo
@@ -74,19 +74,7 @@ namespace TscMasterMente.Common
 
         #region カプセル化メソッド        
 
-        /// <summary>
-        /// データベースファイルパス
-        /// </summary>
-        /// <returns></returns>
-        private string GetDbFilePath()
-        {
-            string DbFileName = GetTscAppInfoConfig("SqliteDbFileName");
 
-            string exePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
-            string directoryPath = System.IO.Path.GetDirectoryName(exePath);
-
-            return System.IO.Path.Combine(directoryPath, DbFileName);
-        }
 
         /// <summary>
         /// テーブルの存在チェック
@@ -162,6 +150,24 @@ namespace TscMasterMente.Common
 
         #region 呼び出し用メソッド
 
+        #region 共通
+
+        /// <summary>
+        /// データベースファイルパス
+        /// </summary>
+        /// <returns></returns>
+        public string GetDbFilePath()
+        {
+            string DbFileName = GetTscAppInfoConfig("SqliteDbFileName");
+
+            string exePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            string directoryPath = System.IO.Path.GetDirectoryName(exePath);
+
+            return System.IO.Path.Combine(directoryPath, DbFileName);
+        }
+
+        #endregion
+
         #region 初回起動時用
 
         /// <summary>
@@ -172,8 +178,8 @@ namespace TscMasterMente.Common
             var wDbVer = GetTscAppInfoConfig("DbVer");
 
             #region マスタテキスト出力先フォルダ
-            
-            var wMstTxtDirName = GetTscAppInfoConfig("MasterTextDirectryName");
+
+            var wMstTxtDirName = GetTscAppInfoConfig("MasterTextDirectoryName");
             var wMstTxtDirPath = System.IO.Path.Combine(GetDbDirPath(), wMstTxtDirName);
 
             // マスタテキスト出力先フォルダの作成
@@ -185,7 +191,7 @@ namespace TscMasterMente.Common
 
             #region マスタExcel出力先フォルダ
 
-            var wMstExcelDirName = GetTscAppInfoConfig("MasterExcelDirectryName");
+            var wMstExcelDirName = GetTscAppInfoConfig("MasterExcelDirectoryName");
             var wMstExcelDirPath = System.IO.Path.Combine(GetDbDirPath(), wMstExcelDirName);
 
             // マスタExcel出力先フォルダの作成
@@ -208,12 +214,20 @@ namespace TscMasterMente.Common
                 wSql += " CREATE TABLE IF NOT EXISTS AppInfo (";
                 wSql += " DbVer TEXT NOT NULL PRIMARY KEY CHECK(length(DbVer) <= 10), ";
                 wSql += " MasterTextDir TEXT CHECK(length(MasterTextDir) <= 1000), ";
-                wSql += " MasterExcelDir TEXT CHECK(length(MasterExcelDir) <= 1000) ";
+                wSql += " MasterExcelDir TEXT CHECK(length(MasterExcelDir) <= 1000), ";
+                wSql += " PlanetWriteDir TEXT CHECK(length(PlanetWriteDir) <= 1000), ";
+                wSql += " TscConfigPath TEXT CHECK(length(TscConfigPath) <= 1000) ";
                 wSql += " );";
                 ExecuteSql(wSql);
 
+
+                var wPlanetDirName = GetTscAppInfoConfig("PlanetWriteDirectoryName");
+                var wPlanetDirPath = System.IO.Path.Combine(GetDbDirPath(), wPlanetDirName);
+                var wTscFilePath = System.IO.Path.Combine(GetDbDirPath(), "Tana.ini");
+
                 //アプリの設定情報を登録
-                wSql = $"INSERT INTO AppInfo(DbVer, MasterTextDir, MasterExcelDir) VALUES ('{wDbVer}', '{wMstTxtDirPath}', '{wMstExcelDirPath}');";
+                wSql = $"INSERT INTO AppInfo(DbVer, MasterTextDir, MasterExcelDir, PlanetWriteDir, TscConfigPath) ";
+                wSql += $" VALUES ('{wDbVer}', '{wMstTxtDirPath}', '{wMstExcelDirPath}', '{wPlanetDirPath}', '{wTscFilePath}');";
                 ExecuteSql(wSql);
 
                 #endregion
@@ -253,15 +267,15 @@ namespace TscMasterMente.Common
                 ExecuteSql(wSql);
 
                 wSql = $" INSERT INTO Masters(MasterCode, MasterName, MasterFileName, ErrFileName)";
-                wSql += $" VALUES ({(int)EnumMasterInfo.SyoZokSei}, '商品属性マスタ', 'M_商品属性.txt', 'M_商品属性_ERR.txt');";
+                wSql += $" VALUES ({(int)EnumMasterInfo.SyoZokSei}, '商品属性マスタ', 'M_商属.txt', 'M_商属_ERR.txt');";
                 ExecuteSql(wSql);
 
                 wSql = $" INSERT INTO Masters(MasterCode, MasterName, MasterFileName, ErrFileName)";
-                wSql += $" VALUES ({(int)EnumMasterInfo.PopMaster}, 'POPマスタ', 'M_POP.txt', 'M_POP_ERR.txt');";
+                wSql += $" VALUES ({(int)EnumMasterInfo.PopMaster}, 'POPマスタ', 'M_ﾊﾟﾈﾙ.txt', 'M_ﾊﾟﾈﾙ_ERR.txt');";
                 ExecuteSql(wSql);
 
                 wSql = $" INSERT INTO Masters(MasterCode, MasterName, MasterFileName, ErrFileName)";
-                wSql += $" VALUES ({(int)EnumMasterInfo.PBunMaster}, 'POP分類マスタ', 'M_POP分類.txt', 'M_POP分類_ERR.txt');";
+                wSql += $" VALUES ({(int)EnumMasterInfo.PBunMaster}, 'POP分類マスタ', 'M_P分類.txt', 'M_P分類_ERR.txt');";
                 ExecuteSql(wSql);
 
                 wSql = $" INSERT INTO Masters(MasterCode, MasterName, MasterFileName, ErrFileName)";
@@ -269,11 +283,11 @@ namespace TscMasterMente.Common
                 ExecuteSql(wSql);
 
                 wSql = $" INSERT INTO Masters(MasterCode, MasterName, MasterFileName, ErrFileName)";
-                wSql += $" VALUES ({(int)EnumMasterInfo.GonJyu}, 'ゴンドラ什器マスタ', 'M_ゴンドラ什器.txt', 'M_ゴンドラ什器_ERR.txt');";
+                wSql += $" VALUES ({(int)EnumMasterInfo.GonJyu}, 'ゴンドラ什器マスタ', 'M_GONJYU.txt', 'M_GONJYU_ERR.txt');";
                 ExecuteSql(wSql);
 
                 wSql = $" INSERT INTO Masters(MasterCode, MasterName, MasterFileName, ErrFileName)";
-                wSql += $" VALUES ({(int)EnumMasterInfo.SlfJyu}, '棚段什器マスタ', 'M_棚段什器.txt', 'M_棚段什器_ERR.txt');";
+                wSql += $" VALUES ({(int)EnumMasterInfo.SlfJyu}, '棚段什器マスタ', 'M_SLFJYU.txt', 'M_SLFJYU_ERR.txt');";
                 ExecuteSql(wSql);
 
                 #endregion
@@ -337,7 +351,7 @@ namespace TscMasterMente.Common
                 #region 属性マスタ
 
                 wSql = "";
-                wSql += " CREATE TABLE IF NOT EXISTS ZokMaster (";                
+                wSql += " CREATE TABLE IF NOT EXISTS ZokMaster (";
                 wSql += " ZkCode TEXT NOT NULL CHECK(length(ZkCode) <= 20), ";
                 wSql += " ZkName TEXT CHECK(length(ZkName) <= 255), ";
                 wSql += " BunCode TEXT CHECK(length(BunCode) <= 20), ";
@@ -350,7 +364,7 @@ namespace TscMasterMente.Common
                 #region 水準マスタ
 
                 wSql = "";
-                wSql += " CREATE TABLE IF NOT EXISTS SuiMaster (";                
+                wSql += " CREATE TABLE IF NOT EXISTS SuiMaster (";
                 wSql += " ZkCode TEXT NOT NULL CHECK(length(ZkCode) <= 20), ";
                 wSql += " SuiCode TEXT NOT NULL CHECK(length(SuiCode) <= 20), ";
                 wSql += " SuiName TEXT CHECK(length(SuiName) <= 255), ";
@@ -456,17 +470,6 @@ namespace TscMasterMente.Common
 
                 #endregion
 
-                #region 後で削除
-
-                #region メーカマスタ
-
-                var insSql = $"INSERT INTO MkMaster (MkCode, MkName_Kana, MkName) VALUES ('BAT', 'ﾋﾞｰｴｰﾃｨｰ', 'BAT');";
-                ExecuteSql(insSql);
-                insSql = $"INSERT INTO MkMaster (MkCode, MkName_Kana, MkName) VALUES ('JTI', 'ｼﾞｪｰﾃｨｰ', 'JT');";
-                ExecuteSql(insSql);
-                #endregion
-
-                #endregion
             }
             else
             {
@@ -633,6 +636,33 @@ namespace TscMasterMente.Common
                 }
             }
         }
+
+        /// <summary>
+        /// DB最適化
+        /// </summary>
+        /// <param name="argDbPath"></param>
+        public void ExecuteVacuum(string argDbPath)
+        {
+            if (string.IsNullOrEmpty(argDbPath))
+            {
+                return;
+            }
+            else if (!System.IO.File.Exists(argDbPath))
+            {
+                return;
+            }
+
+            using (var wCon = new SqliteConnection("Data Source=" + GetDbFilePath()))
+            {
+                wCon.Open();
+                using (var wCmd = wCon.CreateCommand())
+                {
+                    wCmd.CommandText = "VACUUM;";
+                    wCmd.ExecuteNonQuery();
+                }
+            }
+        }
+
         #endregion
 
         #region トランザクション用

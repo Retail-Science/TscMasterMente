@@ -55,6 +55,8 @@ namespace TscMasterMente.DataProc
             var clsSql = new SqliteParts();
             TxtMasterPath.Text = clsSql.GetAppInfo("MasterTextDir");
 
+            //アプリアイコンを設定
+            WindowParts.SetAppIcon(this);
             //ウィンドウサイズを設定
             WindowParts.SetWindowSize(this, 600, 560);
             //ウィンドウを中央に表示
@@ -97,6 +99,7 @@ namespace TscMasterMente.DataProc
         /// <param name="e"></param>
         private async void BtnExec_Click(object sender, RoutedEventArgs e)
         {
+            var wSucceed = false;
             var wProgressWindow = new ProgressWindow();
             string wExecMaster = "";
             try
@@ -324,8 +327,7 @@ namespace TscMasterMente.DataProc
                             //メッセージ
                             if (wAlertList.Count == 0)
                             {
-                                var wMsgDialog = MessageParts.ShowMessageOkOnly(this, "完了", "全てのマスタ取込がエラーなしで完了しました。");
-                                await wMsgDialog.ShowAsync();
+                                wSucceed = true;
                             }
                             else
                             {
@@ -372,6 +374,8 @@ namespace TscMasterMente.DataProc
 
                 var wDialog = MessageParts.ShowMessageOkOnly(this, "エラー", errMsg);
                 await wDialog.ShowAsync();
+
+                wSucceed = false;
             }
             finally
             {
@@ -381,6 +385,12 @@ namespace TscMasterMente.DataProc
 
                 //ウィンドウの有効化
                 WindowParts.SetAllChildEnabled(MainContent, true);
+
+                if (wSucceed)
+                {
+                    var wDialog = MessageParts.ShowMessageOkOnly(this, "完了", "マスタの取込処理が完了しました。");
+                    await wDialog.ShowAsync();
+                }
             }
         }
 

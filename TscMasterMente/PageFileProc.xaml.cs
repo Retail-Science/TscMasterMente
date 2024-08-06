@@ -43,6 +43,7 @@ namespace TscMasterMente
         private void MenuMasterExport_Click(object sender, RoutedEventArgs e)
         {
             MasterExport wMstExp = new MasterExport();
+            ((App)Application.Current).ProWindowMng.AddWindow(wMstExp);
             wMstExp.Activate();
         }
 
@@ -54,6 +55,7 @@ namespace TscMasterMente
         private void MenuMasterImport_Click(object sender, RoutedEventArgs e)
         {
             MasterImport wMstImp = new MasterImport();
+            ((App)Application.Current).ProWindowMng.AddWindow(wMstImp);
             wMstImp.Activate();
         }
 
@@ -65,6 +67,7 @@ namespace TscMasterMente
         private void MenuExcelItemExp_Click(object sender, RoutedEventArgs e)
         {
             ExcelItemMasterExport wExp = new ExcelItemMasterExport();
+            ((App)Application.Current).ProWindowMng.AddWindow(wExp);
             wExp.Activate();
         }
 
@@ -76,6 +79,7 @@ namespace TscMasterMente
         private void MenuExcelItemImp_Click(object sender, RoutedEventArgs e)
         {
             ExcelItemMasterImport wImp = new ExcelItemMasterImport();
+            ((App)Application.Current).ProWindowMng.AddWindow(wImp);
             wImp.Activate();
         }
 
@@ -87,6 +91,7 @@ namespace TscMasterMente
         private void MenuExcelItemBlank_Click(object sender, RoutedEventArgs e)
         {
             ExcelItemMasterBlank wBlank = new ExcelItemMasterBlank();
+            ((App)Application.Current).ProWindowMng.AddWindow(wBlank);
             wBlank.Activate();
         }
 
@@ -98,6 +103,7 @@ namespace TscMasterMente
         private void BtnPlanet_Click(object sender, RoutedEventArgs e)
         {
             PlanetConvert wPlanet = new PlanetConvert();
+            ((App)Application.Current).ProWindowMng.AddWindow(wPlanet);
             wPlanet.Activate();
         }
         #endregion

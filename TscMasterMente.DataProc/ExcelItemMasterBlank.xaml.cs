@@ -54,6 +54,8 @@ namespace TscMasterMente.DataProc
             var clsSql = new SqliteParts();
             TxtMasterPath.Text = clsSql.GetAppInfo("MasterExcelDir");
 
+            //アプリアイコンを設定
+            WindowParts.SetAppIcon(this);
             //ウィンドウサイズを設定
             WindowParts.SetWindowSize(this, 600, 300);
             //ウィンドウを中央に表示
@@ -96,6 +98,7 @@ namespace TscMasterMente.DataProc
         /// <param name="e"></param>
         private async void BtnExec_Click(object sender, RoutedEventArgs e)
         {
+            var wSucceed = false;
             var wProgressWindow = new ProgressWindow();
 
             try
@@ -157,6 +160,7 @@ namespace TscMasterMente.DataProc
                 {
                     var wDialog = MessageParts.ShowMessageOkOnly(this, "処理中断", "処理中にキャンセルを実行しました。");
                     await wDialog.ShowAsync();
+                    if (File.Exists(wFilePath)) File.Delete(wFilePath);                    
                     return;
                 }
                 //ファイルコピーだけでは更新日時が変更されないので、保存を実施する
@@ -172,6 +176,7 @@ namespace TscMasterMente.DataProc
                 {
                     var wDialog = MessageParts.ShowMessageOkOnly(this, "処理中断", "処理中にキャンセルを実行しました。");
                     await wDialog.ShowAsync();
+                    if (File.Exists(wFilePath)) File.Delete(wFilePath);
                     return;
                 }
                 var wInf = new ProcessStartInfo
@@ -184,11 +189,13 @@ namespace TscMasterMente.DataProc
 
                 #endregion
 
+                wSucceed = true;
             }
             catch (Exception ex)
             {
                 var tMsgDialog = MessageParts.ShowMessageOkOnly(this, "エラー", ex.Message);
                 await tMsgDialog.ShowAsync();
+                wSucceed = false;
             }
             finally
             {
@@ -197,7 +204,13 @@ namespace TscMasterMente.DataProc
                 wProgressWindow = null;
 
                 //ウィンドウの有効化
-                WindowParts.SetAllChildEnabled(MainContent, true);                
+                WindowParts.SetAllChildEnabled(MainContent, true);
+
+                if (wSucceed)
+                {
+                    var wDialog = MessageParts.ShowMessageOkOnly(this, "完了", "Excelの出力処理が完了しました。");
+                    await wDialog.ShowAsync();
+                }
             }
         }
 
